@@ -130,7 +130,7 @@ const WorkPost = () => {
     event.preventDefault();
     console.log({ workTitle, category, location, majorCity, pincode, workingHours, numOfWorkers, duratoionOfWork, salary, phoneNumber, description })
     try {
-      const response = await fetch('http://127.0.0.1:4000/workpost', {
+      const response = await fetch('https://seek-safe-work.vercel.app/workpost', {
         method: 'POST',
         body: JSON.stringify({ workTitle, category: category[0], location, majorCity, pincode, workingHours: workingHours[0], numOfWorkers, duratoionOfWork, salary, phoneNumber, description }),
         headers: { 'Content-Type': 'application/json' },
