@@ -12,7 +12,7 @@ function Bookmarked() {
             // if (userInfo) {
                 console.log(userInfo)
                 try {
-                    const response = await fetch(`http://127.0.0.1:4000/myBookmarks/${userInfo.id}`);
+                    const response = await fetch(`https://seek-safe-work.vercel.app/myBookmarks/${userInfo.id}`);
                     if (!response.ok) {
                         throw new Error('Failed to fetch data');
                     }
