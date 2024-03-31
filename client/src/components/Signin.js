@@ -27,7 +27,7 @@ const Signin = () => {
 
   async function handleSendOtp(event) {
     try {
-      const response = await fetch(`http://127.0.0.1:4000/sendOtp/${email}`);
+      const response = await fetch(`https://seek-safe-work.vercel.app/sendOtp/${email}`);
       if (response.ok) {
           console.log("Valid Email and OTP sent");
       } else {
@@ -51,7 +51,7 @@ const Signin = () => {
 
  
   const handleVerifyOtp = (event) => {
-    fetch(`http://127.0.0.1:4000/verifyOtp/${otp}`)
+    fetch(`https://seek-safe-work.vercel.app/verifyOtp/${otp}`)
       .then(response => {
         if (response.ok) {
           setMailVerified(true);
@@ -106,7 +106,7 @@ const Signin = () => {
   async function handleSubmit(event) {
     event.preventDefault();
     try {
-      const response = await fetch('http://127.0.0.1:4000/signup', {
+      const response = await fetch('https://seek-safe-work.vercel.app/signup', {
         method: 'POST',
         body: JSON.stringify({ email, password, userName, pincode }),
         headers: { 'Content-Type': 'application/json' },
