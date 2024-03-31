@@ -11,7 +11,7 @@ function Notifications() {
       
       const queryParams = new URLSearchParams(window.location.search);
       const id = queryParams.get('id');
-      fetch(`http://127.0.0.1:4000/getnotificatoinpost/${id}/${userInfo.id}`).then(res => {
+      fetch(`https://seek-safe-work.vercel.app/getnotificatoinpost/${id}/${userInfo.id}`).then(res => {
         res.json().then(data => {
           console.log(data);
           setWork(data);
