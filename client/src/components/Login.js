@@ -23,7 +23,7 @@ const Login = () => {
 
   async function handleSubmit(event) {
     event.preventDefault()
-    const response = await fetch('http://127.0.0.1:4000/login', {
+    const response = await fetch('https://seek-safe-work.vercel.app/login', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
       headers: { 'Content-Type': 'application/json' },
