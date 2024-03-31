@@ -57,7 +57,7 @@ const TrashCard = ({
     const [snackbarMessage, setSnackbarMessage] = useState('');
     const [snackbarSeverity, setSnackbarSeverity] = useState('info');
     useEffect(() => {
-        fetch(`http://127.0.0.1:4000/upvoteAndDownvote/${cardId}`)
+        fetch(`https://seek-safe-work.vercel.app/upvoteAndDownvote/${cardId}`)
             .then(res => {
                 res.json().then(data => {
                     setUpVotescount(data.upvotes);
@@ -68,7 +68,7 @@ const TrashCard = ({
 
     const handleUpvote = () => {
         if (typeof userId !== 'undefined') {
-            fetch('http://127.0.0.1:4000/updateUpvote',
+            fetch('https://seek-safe-work.vercel.app/updateUpvote',
                 {
                     method: 'PUT',
                     body: JSON.stringify({ cardId, userId }),
@@ -87,7 +87,7 @@ const TrashCard = ({
     }
     const handleDownvote = () => {
         if (typeof userId !== 'undefined') {
-            fetch('http://127.0.0.1:4000/updateDownvote',
+            fetch('https://seek-safe-work.vercel.app/updateDownvote',
                 {
                     method: 'PUT',
                     body: JSON.stringify({ cardId, userId }),
@@ -107,7 +107,7 @@ const TrashCard = ({
     const handleDeletePost = () => {
         setConfirmDelete(true); // Show confirmation dialog
     };const confirmDeleteAction = () => {
-        fetch('http://127.0.0.1:4000/deletemypost', {
+        fetch('https://seek-safe-work.vercel.app/deletemypost', {
             method: 'DELETE',
             body: JSON.stringify({ userId: userInfo.id, cardId }),
             headers: { 'Content-Type': 'application/json' },
@@ -325,7 +325,7 @@ const MyCards = ({ cardData }) => {
             const id = card._id;
             const userId = userInfo?.id;
             if (newStates[index].isFavorite) {
-                 fetch('http://127.0.0.1:4000/postBookmark',
+                 fetch('https://seek-safe-work.vercel.app/postBookmark',
                     {
                         method: 'POST',
                         body: JSON.stringify({ id, userId }),
@@ -334,7 +334,7 @@ const MyCards = ({ cardData }) => {
                     })
             }
             else {
-                fetch('http://127.0.0.1:4000/removeBookmark',
+                fetch('https://seek-safe-work.vercel.app/removeBookmark',
                     {
                         method: 'PUT',
                         body: JSON.stringify({ id, userId }),
