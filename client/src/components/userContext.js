@@ -7,7 +7,7 @@ export function UserContextProvider({ children }) {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        fetch('http://127.0.0.1:4000/profile', {
+        fetch('https://seek-safe-work.vercel.app/profile', {
             credentials: 'include',
         })
             .then((res) => {
