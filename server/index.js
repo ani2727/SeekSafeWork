@@ -11,7 +11,13 @@ const cookieParser = require('cookie-parser')
 app.use(express.static('public'));
 app.use(express.json())
 app.use(cookieParser())
-app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
+// app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
+app.use(cors({
+    origin:"https://seek-safe-work-frontend.vercel.app",
+    methods:["GET","POST","OPTIONS","PUT","PATCH","DELETE"],
+    allowedHeaders:["X-CSRF-Token","X-Requested-With","Accept","Accept-Version","Content-Length","Content-MD5","Content-Type","Date","X-Api-Version"],
+    credentials:true
+}));
 app.use(express.urlencoded({ extended: false }));
 
 //monogodb connection
