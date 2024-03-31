@@ -68,7 +68,7 @@ const EditPost = () => {
     const [snackbarSeverity, setSnackbarSeverity] = useState('info');
 
     useEffect(() => {
-        fetch(`http://127.0.0.1:4000/getpost/${id.id}`)
+        fetch(`https://seek-safe-work.vercel.app/getpost/${id.id}`)
             .then(res => {
                 res.json().then(data => {
                     setData(data);
@@ -168,7 +168,7 @@ const EditPost = () => {
         event.preventDefault();
         console.log({ workTitle, category, location, majorCity, pincode, workingHours, numOfWorkers, duratoionOfWork, salary, phoneNumber, description })
         try {
-            const response = await fetch(`http://127.0.0.1:4000/editpost/${id.id}`, {
+            const response = await fetch(`https://seek-safe-work.vercel.app/editpost/${id.id}`, {
                 method: 'PUT',
                 body: JSON.stringify({ workTitle, category: category[0], location, majorCity, pincode, workingHours: workingHours[0], numOfWorkers, duratoionOfWork, salary, phoneNumber, description, authorId }),
                 headers: { 'Content-Type': 'application/json' },
