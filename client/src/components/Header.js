@@ -52,7 +52,7 @@ function Header() {
   }
 
   const handleMarkAllAsRead = () => {
-    fetch(`http://127.0.0.1:4000/clearNotificatoins/${userInfo.id}`).then(res => {
+    fetch(`https://seek-safe-work.vercel.app/clearNotificatoins/${userInfo.id}`).then(res => {
       res.json().then(data => {
         console.log(data);
         setNotifications([])
@@ -63,7 +63,7 @@ function Header() {
   console.log(userInfo);
   React.useEffect(() => {
     if (!isLoading) {
-      fetch(`http://127.0.0.1:4000/notification/${userInfo?.id}`)
+      fetch(`https://seek-safe-work.vercel.app/notification/${userInfo?.id}`)
         .then(res => res.json())
         .then(data => {
 
@@ -82,7 +82,7 @@ function Header() {
   }
 
   function logout() {
-    fetch('http://127.0.0.1:4000/logout', {
+    fetch('https://seek-safe-work.vercel.app/logout', {
       method: 'POST',
       credentials: 'include',
     }).then(res => {
