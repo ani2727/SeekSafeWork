@@ -459,6 +459,26 @@ module.exports.downvote_put = async (req, res) => {
     }
 }
 
+// module.exports.notification_get = async (req, res) => {
+//     const { id } = req.params;
+//     // console.log("ID", id);
+//     if (!id) {
+//         return res.status(400).json({ error: 'ID parameter is missing or invalid' });
+//     }
+//     let count = 0; // Initialized here
+//     try {
+//         const userNotifications = await Notifications.findOne({ author: id }).populate('unviewed');
+//         if (!userNotifications || !userNotifications.unviewed) {
+//             // console.log('No notifications found or unviewed notifications array is empty.');
+//             return res.json(userNotifications.unviewed); // Sending response with info and count
+//         }
+//         res.json(userNotifications); // Sending response with info and count
+//     } catch (error) {
+//         console.error('Error fetching notifications:', error);
+//         res.status(500).json({ error: 'Internal server error' });
+//     }
+// }
+
 module.exports.notification_get = async (req, res) => {
     const { id } = req.params;
     // console.log("ID", id);
@@ -468,9 +488,12 @@ module.exports.notification_get = async (req, res) => {
     let count = 0; // Initialized here
     try {
         const userNotifications = await Notifications.findOne({ author: id }).populate('unviewed');
-        if (!userNotifications || !userNotifications.unviewed) {
-            // console.log('No notifications found or unviewed notifications array is empty.');
-            return res.json(userNotifications.unviewed); // Sending response with info and count
+        if (!userNotifications) {
+            return res.json({ error: 'No notifications found for this user' });
+        }
+        if (!userNotifications.unviewed) {
+            console.log('No unviewed notifications found.');
+            return res.json(userNotifications); // Sending response with info and count
         }
         res.json(userNotifications); // Sending response with info and count
     } catch (error) {
@@ -478,8 +501,6 @@ module.exports.notification_get = async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 }
-
-
 module.exports.clearNotificatoins = async (req, res) => {
     const { id } = req.params;
     if (!id) {
