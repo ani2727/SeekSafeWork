@@ -114,10 +114,10 @@ function Header() {
   }, [isLoading]);
 
   console.log(notifications);
-  if (isLoading) {
-    console.log(userInfo)
-    return <div>Loading ..... </div>
-  }
+  // if (isLoading) {
+  //   console.log(userInfo)
+  //   return <div>Loading ..... </div>
+  // }
 
   function logout() {
     fetch('https://seek-safe-work.vercel.app/logout', {
@@ -160,12 +160,12 @@ function Header() {
             sx={{ flexGrow: 1 }}
             style={{ visibility: isLoading ? 'visible' : 'hidden' }}
           />
-{!isLoading && <>
- 
+
+         {!isLoading && <>
           {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
           <Avatar component="a" href="/" src={SSW} alt="SSW Logo" sx={{ display: { xs: 'none', md: 'flex' }, width: 40, height: 40, marginRight: '8px' }} />
 
-
+          
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
