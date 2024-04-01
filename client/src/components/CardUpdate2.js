@@ -182,11 +182,11 @@ const TrashCard = ({
         <CardContent sx={{ textAlign: 'left', marginBottom: '0px', paddingBottom: '0px' }}>
           <Typography paragraph sx={{}}>
             {[
-              { label: 'Salary', icon: <CurrencyRupeeIcon />, value: salary || 0 },
-              { label: 'People', icon: <GroupsIcon />, value: numOfWorkers || 0 },
-              { label: 'Hours', icon: <ScheduleIcon />, value: workingHours || 0 },
-              { label: 'Location', icon: <LocationOnIcon />, value: location || 'location' },
-              { label: 'Contact info', icon: <CallIcon />, value: phoneNumber || '9999999999' },
+              { label: 'Salary', icon: <CurrencyRupeeIcon style={{ color: '#f7980a' }} />, value: salary || 0 },
+              { label: 'People', icon: <GroupsIcon style={{ color: 'blue' }} />, value: numOfWorkers || 0 },
+              { label: 'Hours', icon: <ScheduleIcon style={{ color: 'black' }} />, value: workingHours || 0 },
+              { label: 'Location', icon: <LocationOnIcon style={{ color: 'red' }} />, value: location || 'location' },
+              { label: 'Contact info', icon: <CallIcon style={{ color: 'green' }} />, value: phoneNumber || '9999999999' },
             ].map((item, index) => (
               <React.Fragment key={index}>
                 <IconButton aria-label={item.label} sx={{ pointerEvents: 'none' }}>
