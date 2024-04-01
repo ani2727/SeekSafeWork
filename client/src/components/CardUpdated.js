@@ -266,42 +266,95 @@ const Trash4 = ({ cardData }) => {
     message: '',
   });
 
-  const handleFavoriteClick = (card, index) => {
+  // const handleFavoriteClick = (card, index) => {
+  //   setCardStates((prevStates) => {
+  //     const newStates = [...prevStates];
+  //     newStates[index].isFavorite = !newStates[index].isFavorite;
+
+  //     // console.log(`before fun ${card}`)
+  //     if (newStates[index].isFavorite) {
+  //       setSnackbarState({
+  //         open: true,
+  //         Transition: Slide,
+  //         message: isLoggedIn ? "Successfully added to favorites!" : "Please log in, to add to favorites"
+  //       });
+  //     }
+  //     const id = card._id;
+  //     const userId = userInfo?.id;
+  //     if (newStates[index].isFavorite) {
+  //       fetch('https://seek-safe-work.vercel.app/postBookmark',
+  //         {
+  //           method: 'POST',
+  //           body: JSON.stringify({ id, userId }),
+  //           headers: { 'Content-Type': 'application/json' },
+  //           credentials: 'include'
+  //         })
+  //     }
+  //     else {
+  //       fetch('https://seek-safe-work.vercel.app/removeBookmark',
+  //         {
+  //           method: 'PUT',
+  //           body: JSON.stringify({ id, userId }),
+  //           headers: { 'Content-Type': 'application/json' },
+  //           credentials: 'include'
+  //         })
+  //     }
+  //     return newStates;
+  //   });
+  // };
+
+  const handleFavoriteClick = async (card, index) => {
+  // Ensure that the user is logged in before proceeding.
+  if (!isLoggedIn) {
+    setSnackbarState({
+      open: true,
+      Transition: Slide,
+      message: "Please log in to add to favorites",
+    });
+    return; // Exit the function if the user is not logged in.
+  }
+
+  const newIsFavorite = !cardStates[index].isFavorite;
+  const id = card._id;
+  const userId = userInfo?.id;
+
+  // Optimistically update the UI to reflect the anticipated change.
+  setCardStates((prevStates) => {
+    const newStates = [...prevStates];
+    newStates[index].isFavorite = newIsFavorite;
+    return newStates;
+  });
+
+  // Determine the appropriate URL and method based on whether we are adding or removing a bookmark.
+  const url = newIsFavorite ? 'https://seek-safe-work.vercel.app/postBookmark' : 'https://seek-safe-work.vercel.app/removeBookmark';
+  const method = newIsFavorite ? 'POST' : 'PUT';
+
+  try {
+    const response = await fetch(url, {
+      method: method,
+      body: JSON.stringify({ id, userId }),
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+    });
+
+    if (!response.ok) throw new Error('Network response was not ok.');
+
+    // Show success message.
+    setSnackbarState({
+      open: true,
+      Transition: Slide,
+      message: newIsFavorite ? "Successfully added to favorites!" : "Successfully removed from favorites!",
+    });
+  } catch (error) {
+    console.error("Failed to update the favorite status:", error);
+    // Revert the UI change if the request fails.
     setCardStates((prevStates) => {
       const newStates = [...prevStates];
-      newStates[index].isFavorite = !newStates[index].isFavorite;
-
-      // console.log(`before fun ${card}`)
-      if (newStates[index].isFavorite) {
-        setSnackbarState({
-          open: true,
-          Transition: Slide,
-          message: isLoggedIn ? "Successfully added to favorites!" : "Please log in, to add to favorites"
-        });
-      }
-      const id = card._id;
-      const userId = userInfo?.id;
-      if (newStates[index].isFavorite) {
-        fetch('https://seek-safe-work.vercel.app/postBookmark',
-          {
-            method: 'POST',
-            body: JSON.stringify({ id, userId }),
-            headers: { 'Content-Type': 'application/json' },
-            credentials: 'include'
-          })
-      }
-      else {
-        fetch('https://seek-safe-work.vercel.app/removeBookmark',
-          {
-            method: 'PUT',
-            body: JSON.stringify({ id, userId }),
-            headers: { 'Content-Type': 'application/json' },
-            credentials: 'include'
-          })
-      }
+      newStates[index].isFavorite = !newIsFavorite; // Revert the optimistic update
       return newStates;
     });
-  };
+  }
+};
 
 
   const handleCloseSnackbar = () => {
