@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Container, Box, Divider, AppBar, Toolbar, IconButton, Typography, Menu, Button,Avatar,Badge,Tooltip,MenuItem,Dialog, DialogContent, DialogActions } from '@mui/material';
+import { Container, Box, Divider, AppBar, Toolbar, IconButton, Typography, Menu,Skelton, Button,Avatar,Badge,Tooltip,MenuItem,Dialog, DialogContent, DialogActions } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -152,6 +152,16 @@ function Header() {
     <AppBar position="fixed" >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
+          <Skeleton
+            variant="rectangular"
+            width={200}
+            height={50}
+            animation="wave"
+            sx={{ flexGrow: 1 }}
+            style={{ visibility: isLoading ? 'visible' : 'hidden' }}
+          />
+{!isLoading && <>
+ 
           {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
           <Avatar component="a" href="/" src={SSW} alt="SSW Logo" sx={{ display: { xs: 'none', md: 'flex' }, width: 40, height: 40, marginRight: '8px' }} />
 
@@ -364,6 +374,8 @@ function Header() {
               )}
             </Menu>
           </Box>
+                 
+  </>}
         </Toolbar>
       </Container>
     </AppBar >
