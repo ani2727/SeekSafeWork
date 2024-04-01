@@ -104,7 +104,7 @@ function Header() {
       fetch(`https://seek-safe-work.vercel.app/notification/${userInfo?.id}`)
         .then(res => res.json())
         .then(data => {
-
+          if (data.unviewed)
           setNotifications(data.unviewed); // Set count to the value received from the API
         })
         .catch(error => {
