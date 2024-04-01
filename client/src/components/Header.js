@@ -187,7 +187,15 @@ function Header() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Button
+                    key={page}
+                    component={Link} // Use Link component for navigation
+                    to={page === 'Home' ? '/' : `/${page.toLowerCase()}`}
+                    onClick={handleCloseNavMenu}
+                  sx={{ color: 'black' }}
+                  >
+                    {page}
+                  </Button>
                 </MenuItem>
               ))}
             </Menu>
