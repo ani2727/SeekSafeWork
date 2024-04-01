@@ -8,23 +8,62 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { Dialog, DialogTitle, DialogContent, Snackbar, Slide, Grid, Container, Divider, Avatar, Button, CardActions, Card, CardHeader, CardContent, Typography, IconButton, DialogActions} from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { UserContext } from './userContext'
-import { green, red, orange, pink, purple } from '@mui/material/colors';
+// import { green, red, orange, pink, purple } from '@mui/material/colors';
 import { formatDistanceToNow } from 'date-fns';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import EditIcon from '@mui/icons-material/Edit';
+// const getAvatarColor = (char) => {
+//     const colorMap = {
+//         R: green[500],
+//         S: red[500],
+//         P: orange[500],
+//         D: pink[500],
+//         T: purple[500],
+//         // Add more mappings as needed
+//     };
+//     return colorMap[char.toUpperCase()] || 'default';
+// };
+
+import {
+  red, pink, purple, deepPurple, indigo, blue, lightBlue, cyan,
+  teal, green, lightGreen, lime, yellow, amber, orange, deepOrange,
+  brown, grey, blueGrey
+} from '@mui/material/colors';
+
 const getAvatarColor = (char) => {
-    const colorMap = {
-        R: green[500],
-        S: red[500],
-        P: orange[500],
-        D: pink[500],
-        T: purple[500],
-        // Add more mappings as needed
-    };
-    return colorMap[char.toUpperCase()] || 'default';
+  const colorMap = {
+    A: red[500],
+    B: pink[500],
+    C: purple[500],
+    D: deepPurple[500],
+    E: indigo[500],
+    F: blue[500],
+    G: lightBlue[500],
+    H: cyan[500],
+    I: teal[500],
+    J: green[500],
+    K: lightGreen[500],
+    L: lime[500],
+    M: yellow[500],
+    N: amber[500],
+    O: orange[500],
+    P: deepOrange[500],
+    Q: brown[500],
+    R: grey[500],
+    S: blueGrey[500],
+    T: red[600],
+    U: pink[600],
+    V: purple[600],
+    W: deepPurple[600],
+    X: indigo[600],
+    Y: blue[600],
+    Z: lightBlue[600],
+  };
+  return colorMap[char.toUpperCase()] || grey[500];
 };
+
 
 const TrashCard = ({
     userName,
