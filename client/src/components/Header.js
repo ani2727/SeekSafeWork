@@ -158,7 +158,7 @@ function Header() {
             height={50}
             animation="wave"
             sx={{ flexGrow: 1 }}
-            style={{ visibility: isLoading ? 'visible' : 'hidden' }}
+            style={{ display: isLoading ? 'inline-block' : 'none' }}
           />
 
          {!isLoading && <>
