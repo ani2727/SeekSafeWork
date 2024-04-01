@@ -26,11 +26,17 @@ const Signin = () => {
   const [snackbarSeverity, setSnackbarSeverity] = useState('info');
 
   async function handleSendOtp(event) {
-     // setIsOtpButtonDisabled(true);
+     setSendOtpDisabled(true); 
+    setTimeout(() => {
+      setSendOtpDisabled(false);
+    }, 10000);
     try {
       const response = await fetch(`https://seek-safe-work.vercel.app/sendOtp/${email}`);
       if (response.ok) {
           console.log("Valid Email and OTP sent");
+        setSnackbarMessage('OTP sent');
+        setSnackbarSeverity('success');
+        setSnackbarOpen(true);
       } else {
           const data = await response.json();
           setEmailError(data.errors.email);
@@ -39,10 +45,11 @@ const Signin = () => {
   } catch (error) {
       console.error("Error sending OTP:", error);
       // Handle any other errors, such as network errors
+       setSnackbarMessage('OTP sending failed');
+        setSnackbarSeverity('error');
+        setSnackbarOpen(true);
   }
-    //  setTimeout(() => {
-    //     setIsOtpButtonDisabled(false); // Re-enable the button after 15 seconds
-    // }, 15000);
+    
   }
 
   const handleOtpChange = (event) => {
