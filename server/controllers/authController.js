@@ -116,6 +116,8 @@ module.exports.signup_post = async (req, res) => {
         res.cookie('jwt', token, {
             maxAge: maxAge * 1000,
             httpOnly: true,
+            sameSite: 'None', // Ensure cross-site cookies are allowed
+            secure: true // Ensure the cookie is only sent over HTTPS
         });
         await Notifications.create({
             author: user._id,
@@ -148,6 +150,8 @@ module.exports.login_post = async (req, res) => {
         res.cookie('jwt', token, {
             maxAge: maxAge * 1000,
             httpOnly: true,
+             sameSite: 'None', // Ensure cross-site cookies are allowed
+             secure: true // Ensure the cookie is only sent over HTTPS
         });
         res.status(200).json({ id: user._id, userName: user.userName });
     } catch (error) {
@@ -157,7 +161,11 @@ module.exports.login_post = async (req, res) => {
 }
 
 module.exports.logout_get = (req, res) => {
-    res.cookie('jwt', '', { maxAge: 1 });
+    res.clearCookie('token', {
+        httpOnly: true,
+        sameSite: 'None',
+        secure: true 
+    });
     res.json({ suc: true });
     // res.redirect('/')
 }
