@@ -13,7 +13,6 @@ img {
   height: auto;
 }
 
-
 .centered-container {
   display: flex;
   justify-content: center;
@@ -83,12 +82,11 @@ img {
 .application {
   margin-bottom: 40px;
 }
-.about{
+.about {
   border: 1px solid #ddd;
   padding: 6px;
   border-radius: 3%;
   background-color: #cba6f5;
-
 }
 .about p,
 .services .service p {
@@ -113,8 +111,6 @@ img {
   color: white;
 } */
 
-
-
 .footer {
   background-color: #333;
   color: #fff;
@@ -134,25 +130,22 @@ img {
   }
 }
 
-
 html {
   font-size: 16px; /* Default font size */
 }
 
 @media (max-width: 768px) {
   html {
-      font-size: 14px; /* Smaller for tablets */
+    font-size: 14px; /* Smaller for tablets */
   }
 }
 
 @media (max-width: 480px) {
   html {
-      font-size: 12px; /* Even smaller for phones */
+    font-size: 12px; /* Even smaller for phones */
   }
 }
 
 .my-component {
   font-size: 1.125rem; /* This will scale with the root font size */
 }
-
-

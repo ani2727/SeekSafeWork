@@ -1,41 +1,27 @@
-const express = require('express')
-const mongoose = require('mongoose');
-const app = express()
-const appRoute=require('./routes/authRoute')
-const cors=require('cors')
+const express = require("express");
+const mongoose = require("mongoose");
+const app = express();
+const appRoute = require("./routes/authRoute");
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
+require("dotenv").config(); // Load environment variables
 
-const cookieParser = require('cookie-parser')
-// const {requireAuth,checkUser}=require('./Middleware/authMiddleware')
-
-// middleware
-app.use(express.static('public'));
-app.use(express.json())
-app.use(cookieParser())
-// app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
-app.use(cors({
-    origin:"https://seek-safe-work-frontend.vercel.app",
-    methods:["GET","POST","OPTIONS","PUT","PATCH","DELETE"],
-    allowedHeaders:["X-CSRF-Token","X-Requested-With","Accept","Accept-Version","Content-Length","Content-MD5","Content-Type","Date","X-Api-Version"],
-    credentials:true
-}));
+// Middleware
+app.use(express.static("public"));
+app.use(express.json());
+app.use(cookieParser());
+app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(express.urlencoded({ extended: false }));
 
-//monogodb connection
-// const dbURI = 'mongodb://127.0.0.1:27017/Mini'
-const dbURI=process.env.DB_URL
-mongoose.connect(dbURI)
-    .then((result) => app.listen(4000))
-    .catch((err) => console.log('My error', err));
+// MongoDB connection
+const dbURI = "mongodb+srv://ramu:ramu@cluster3.vwbuu.mongodb.net/major";
 
+mongoose
+  .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() =>
+    app.listen(4000, () => console.log("Server running on port 4000"))
+  )
+  .catch((err) => console.log("MongoDB connection error:", err));
 
-// app.get('/getCookie', (req, res) => {
-//     res.cookie('sai', true, {
-//         httpOnly: true,
-//     })
-//     res.send("ok ")
-// })
-
-app.use(appRoute)
-
-
-
+// Routes
+app.use(appRoute);
