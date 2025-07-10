@@ -14,15 +14,15 @@ const transporter = nodemailer.createTransport({
   port: 587,
   secure: false,
   auth: {
-    user: "sudheersudigali49@gmail.com",
-    pass: "ixhgovdrmemkfzhu",
+    user: "your_email@gmail.com",
+    pass: "your_passkey",
   },
 });
 
 const mailOptions = {
   from: {
     name: "Seek Safe Work",
-    address: "sudheersudigali49@gmail.com",
+    address: "your_email@gmail.com",
   },
   // to: `${emailaddress}`,
   subject: "Email verification OTP",
