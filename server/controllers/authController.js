@@ -97,7 +97,7 @@ const workHandleErrors = (err) => {
 };
 
 //creating tokens
-const secret = "aer34tsdfq34taasdfadfadfadfad";
+const secret = "your_secret_key";
 const maxAge = 3 * 24 * 60 * 60;
 const createToken = (id, userName) => {
   return jwt.sign({ id, userName }, secret, {
